@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const response = require('../../network/response');
 const controller = require('./controller');
+const auth = require('../../services/auth')
 
 /* AGREGAR NUEVO USUARIO */
 router.post('/add_user',(req,res) => {
@@ -27,7 +28,7 @@ router.post('/login', (req, res) => {
   })
 })
 
-router.get('/', (req, res) => {
+router.get('/', auth.verifyToken,(req, res) => { 
   controller.getUsers()
   .then((users) => {
     response.success(res, users, 200);
