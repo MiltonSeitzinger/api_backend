@@ -1,20 +1,22 @@
 const express = require('express');
-const dotenv = require('dotenv');
-dotenv.config();
-
 const path = require('path');
+const dotenv = require('dotenv');
 const router = require(path.join(__dirname,'network','routes'));
-
 const db = require('./db')
-db(process.env.URLDB)
 
 var app = express();
+
+dotenv.config();
+
+db(process.env.URLDB)
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
 router(app);
-app.listen(process.env.PORT);
-console.log(`Corriendo en el puerto ${(process.env.PORT)}`)
+
+app.listen(process.env.PORT_CONEXA);
+
+console.log(`Corriendo en el puerto ${(process.env.PORT_CONEXA)}`)
 
 module.exports = app
