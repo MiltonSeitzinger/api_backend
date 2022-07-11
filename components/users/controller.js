@@ -1,6 +1,6 @@
 'use strict'
 const store = require('./store');
-const bcrypt = require('bcrypt');
+const auth = require('../../services/auth');
 
 function formatEmailValid(email){
   let regex_email = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
@@ -31,8 +31,15 @@ async function addUser(user){
         return;
       }
       let newUser = await store.addUser(user);
-      newUser.add ? resolve(newUser): (reject('Hubo problemas para guardar el nuevo usuario'),console.log(newUser));
-      return;
+      if(newUser.add){
+        let token = auth.generateToken(email);
+        resolve(token); 
+        return;
+      } else {
+        console.log(newUser);
+        reject('Hubo problemas para guardar el nuevo usuario')
+        return;
+      }
     } catch (error) {
       reject(error)
       return;
@@ -76,9 +83,12 @@ async function loginUser(user) {
             return;
           } else {
             if(isMatch){
-              resolve('Contraseña correcta')
+              let token = auth.generateToken(email);
+              resolve(token);
+              return;
             } else {
               resolve('Contraseña incorrecta')
+              return;
             }
           }
         })
