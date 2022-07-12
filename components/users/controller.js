@@ -1,4 +1,4 @@
-'use strict'
+/* jshint esversion: 8 */
 const store = require('./store');
 const auth = require('../../services/auth');
 
@@ -21,7 +21,7 @@ async function addUser(user){
       const { email } = user;
       let isEmailValid = formatEmailValid(email);
       if(!isEmailValid){
-        resolve('Formato de email inválido')
+        resolve('Formato de email inválido');
         return;
       }
 
@@ -37,11 +37,11 @@ async function addUser(user){
         return;
       } else {
         console.log(newUser);
-        reject('Hubo problemas para guardar el nuevo usuario')
+        reject('Hubo problemas para guardar el nuevo usuario');
         return;
       }
     } catch (error) {
-      reject(error)
+      reject(error);
       return;
     }
   });
@@ -57,7 +57,7 @@ async function getUsers(){
       reject(error);
       return;
     }
-  })
+  });
 }
 
 
@@ -71,7 +71,7 @@ async function loginUser(user) {
       const { email, password } = user;
       let isEmailValid = formatEmailValid(email);
       if(!isEmailValid){
-        resolve('Formato de email inválido')
+        resolve('Formato de email inválido');
         return;
       }
 
@@ -87,24 +87,24 @@ async function loginUser(user) {
               resolve(token);
               return;
             } else {
-              resolve('Contraseña incorrecta')
+              resolve('Contraseña incorrecta');
               return;
             }
           }
-        })
+        });
       } else{
-        reject('No existe el email');
+        resolve('No existe el email');
         return;
       }
     } catch (error) {
-      reject(error)
+      reject(error);
       return;
     }
-  })
+  });
 }
 
 module.exports = {
   addUser,
   getUsers, 
   login: loginUser
-}
+};

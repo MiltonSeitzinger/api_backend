@@ -1,3 +1,4 @@
+/* jshint esversion: 8 */
 const User = require('./model');
 
 async function getUserByEmail(email){
@@ -17,7 +18,7 @@ async function addUser(user) {
     })
     .catch((err) => {
       return {add: false, err };
-    })
+    });
     return new_user;
 }
 
@@ -31,4 +32,4 @@ module.exports = {
   getUserByEmail,
   addUser,
   getUsers
-}
+};

@@ -1,8 +1,9 @@
+/* jshint esversion: 8 */
 const express = require('express');
 const router = express.Router();
 const response = require('../../network/response');
 const controller = require('./controller');
-const auth = require('../../services/auth')
+const auth = require('../../services/auth');
 
 /* AGREGAR NUEVO USUARIO */
 router.post('/add_user',(req,res) => {
@@ -11,10 +12,10 @@ router.post('/add_user',(req,res) => {
     response.success(res,new_user,200);
   })
   .catch((err) => {
-    console.log("file: network.js ~ line 13 ~ router.post ~ err", err)
+    console.log("file: network.js ~ line 13 ~ router.post ~ err", err);
     response.error(res, 'Internal Server Error',500);
-  })
-})
+  });
+});
 
 /* LOGIN DE USUARIO */
 router.post('/login', (req, res) => {
@@ -23,10 +24,10 @@ router.post('/login', (req, res) => {
     response.success(res,user,200);
   })
   .catch((err) => {
-    console.log("file: network.js ~ line 25 ~ router.post ~ err", err)
+    console.log("file: network.js ~ line 25 ~ router.post ~ err", err);
     response.error(res,'Internal Server Error', 500);
-  })
-})
+  });
+});
 
 router.get('/', auth.verifyToken,(req, res) => { 
   controller.getUsers()
@@ -34,10 +35,10 @@ router.get('/', auth.verifyToken,(req, res) => {
     response.success(res, users, 200);
   })
   .catch((err) => {
-    response.error(res, 'Internal Server Error', 500)
-  })
-})
+    response.error(res, 'Internal Server Error', 500);
+  });
+});
 
 
 
-module.exports = router
+module.exports = router;
