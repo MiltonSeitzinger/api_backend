@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
 			/* Configure  jshint para comprobar la sintaxis de los archivos */
 			jshint: {
-				files: ['network/*.js','components/users/*.js','components/posts/*.js', 'services/*.js', 'tests/*.js', 'db.js', 'server.js'],
+				files: ['network/*.js','components/users/*.js','components/photos/*.js', 'services/*.js', 'tests/*.js', 'db.js', 'server.js'],
 				options: {
 					globals: {
 						jQuery: true
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
             timeout : 5000,
             quiet : false 
           },
-          src : ["tests/post.test.js"]
+          src : ["tests/user.test.js","tests/post.test.js","tests/photos.test.js"]
         }
       }
     });

@@ -7,10 +7,9 @@ const auth = require('../../services/auth');
 
 router.post('/', auth.verifyToken, (req, res) => {
   let offset = req.body.offset ? req.body.offset-1 : 0;
-
-  controller.getPosts(req.body.limit,offset)
-  .then((posts) => {
-    response.success(res,posts,200);
+  controller.getPhotos(req.body.limit,offset)
+  .then((photos) => {
+    response.success(res,photos,200);
     return;
   })
   .catch((err) => {

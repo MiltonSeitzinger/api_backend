@@ -41,10 +41,10 @@ describe('POST /api/users/add_user', () => {
 	});
 });
 
-describe('POST /api/posts/', () => {
+describe('POST /api/photos/', () => {
   it('Test sin token en la peticion', done => {
 		request(app)
-			.post('/api/posts/')
+			.post('/api/photos/')
 			.set('Accept', 'application/json')
 			.expect(401)
 			.end((err, res) => {
@@ -57,14 +57,14 @@ describe('POST /api/posts/', () => {
 	});
 	it('Test con token en la peticion por default(offset y limit)', done => {
 		request(app)
-			.post('/api/posts/')
+			.post('/api/photos/')
 			.set('Accept', 'application/json')
 			.set('Authorization', `Bearer ${token}`)
 			.expect(200)
 			.end((err, res) => {
 				if(err) return done(err);
 				res.status.should.equal(200);
-				res.body.message.length.should.equal(20);
+				res.body.message.length.should.equal(10);
 				res.body.error.should.equal(false);
 				done();
 		});
@@ -73,7 +73,7 @@ describe('POST /api/posts/', () => {
 		let offset = 15;
 		let primer_elemento = 0;
 		request(app)
-			.post('/api/posts/')
+			.post('/api/photos/')
 			.set('Accept', 'application/json')
 			.set('Authorization', `Bearer ${token}`)
 			.send({offset})
@@ -81,7 +81,7 @@ describe('POST /api/posts/', () => {
 			.end((err, res) => {
 				if(err) return done(err);
 				res.status.should.equal(200);
-				res.body.message.length.should.equal(20);
+				res.body.message.length.should.equal(10);
 				res.body.message[primer_elemento].id.should.equal(offset);
 				res.body.error.should.equal(false);
 				done();
@@ -90,7 +90,7 @@ describe('POST /api/posts/', () => {
 	it('Test con limit como parametro y offset por default', done => {
 		let limit = 15;
 		request(app)
-			.post('/api/posts/')
+			.post('/api/photos/')
 			.set('Accept', 'application/json')
 			.set('Authorization', `Bearer ${token}`)
 			.send({limit})
@@ -108,7 +108,7 @@ describe('POST /api/posts/', () => {
 		let offset = 4;
 		let primer_elemento = 0;
 		request(app)
-			.post('/api/posts/')
+			.post('/api/photos/')
 			.set('Accept', 'application/json')
 			.set('Authorization', `Bearer ${token}`)
 			.send({ limit, offset })
