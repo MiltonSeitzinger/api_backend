@@ -1,6 +1,7 @@
 /* jshint esversion: 8 */
 const jwt = require('jsonwebtoken');
 const response = require('../network/response');
+const store = require('../components/users/store');
 
 function generateToken(email){
   try {
@@ -11,7 +12,7 @@ function generateToken(email){
   }
 }
 
-function verifyToken(req, res, next) {
+async function verifyToken(req, res, next) {
   try {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(' ')[1];
@@ -21,14 +22,20 @@ function verifyToken(req, res, next) {
       return;
     }
 
-    jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, process.env.TOKEN_SECRET, async (err, user) => {
       if (err) {
         console.log(err);
         response.success(res,'Token inválido', 403);
         return;
       }
-      req.user = user;
-      next();
+      let userDB = await store.getUserByEmail(user.email);
+      if(userDB.email == user.email){
+        req.user = user;
+        next();
+      } else {
+        response.success(res,'Token inválido', 403);
+        return;
+      }
     });
   } catch (error) {
     console.log('error', error);
