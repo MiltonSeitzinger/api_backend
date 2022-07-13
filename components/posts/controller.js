@@ -10,7 +10,7 @@ async function getPosts(limit = 20, offset = 0) {
         resolve(posts);
         return;
       } else {
-        reject(error);
+        reject(postAll.message);
         return;  
       }
     } catch (error) {

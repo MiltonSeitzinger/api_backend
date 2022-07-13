@@ -10,7 +10,7 @@ async function getPhotos(limit = 10, offset = 0) {
         resolve(photos);
         return;
       } else {
-        reject(error);
+        reject(photosAll.message);
         return;  
       }
     } catch (error) {

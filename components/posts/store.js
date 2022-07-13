@@ -7,7 +7,7 @@ async function getPosts(){
     let posts = await axios.get(urlPosts);
     return { posts, error: false };
   } catch (error) {
-    return { error: true, message:error };
+    return { error: true, message: error };
   }
 }
 
