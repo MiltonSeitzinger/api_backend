@@ -1,17 +1,20 @@
 # API BACKEND
 
-
 ## Como ejecutar 🚀
 
-_Para poder probar se debe realizar peticiones a través de postoman o insomnia a las siguiente url:_
+_Para poder probar se debe realizar peticiones a través de postman o insomnia a las siguiente url:_
 
 ### USERS
 
 #### Obtener los usuarios registrados.
+
 ```
 GET -> https://www.apibackend.website/api/users/
 ```
+
 _Lista todos los email de los usuarios registrados, para realizar la petición se necesita token._
+_El formato de respuesta es la siguiente:_
+
 ```
   {
     "error": false,
@@ -33,19 +36,24 @@ _Lista todos los email de los usuarios registrados, para realizar la petición s
 ```
 
 #### Agregar un nuevo usuarios.
+
 ```
 POST -> https://www.apibackend.website/api/users/add_user
 ```
+
 _Se utiliza para poder registrar un nuevo usuario en el sistema, el formato del json a enviar es el siguiente:_
+
 ```
-{
-	"user": {
-		"email": "email7@gmail.com",
-		"password": "pass123"
-	}
-}
+  {
+    "user": {
+      "email": "email7@gmail.com",
+      "password": "pass123"
+    }
+  }
 ```
+
 _El formato de respuesta es la siguiente:_
+
 ```
   {
     "error": false,
@@ -54,10 +62,13 @@ _El formato de respuesta es la siguiente:_
 ```
 
 #### Login de un usuarios.
+
 ```
 POST -> https://www.apibackend.website/api/users/login
 ```
+
 _Se utiliza para el login de un usuario, comprobando email y contraseña, el formato del json a enviar es el siguiente:_
+
 ```
   {
     "user": {
@@ -79,19 +90,24 @@ _Formato de respuesta:_
 ### POSTS
 
 #### Obtener los posts de la API.
+
 ```
 GET -> https://www.apibackend.website/api/posts/
 ```
-_Te lista los posts de  acuerdo a los parámetros que se pasan, para realizar la petición se necesita token._
+
+_Te lista los posts de acuerdo a los parámetros que se pasan, para realizar la petición se necesita token._
 
 _El formato del json para enviar es el siguiente:_
+
 ```
   {
     "limit":30,
     "offset":99
   }
 ```
+
 _El formato de respuesta es la siguiente:_
+
 ```
   {
   "error": false,
@@ -114,19 +130,24 @@ _El formato de respuesta es la siguiente:_
 ### PHOTOS
 
 #### Obtener las photos de la API.
+
 ```
 GET -> https://www.apibackend.website/api/photos/
 ```
-_Te lista las photos de  acuerdo a los parámetros que se pasan, para realizar la petición se necesita token._
+
+_Te lista las photos de acuerdo a los parámetros que se pasan, para realizar la petición se necesita token._
 
 _El formato del json para enviar es el siguiente:_
+
 ```
   {
     "limit":10,
     "offset":30
   }
 ```
+
 _El formato de respuesta es la siguiente:_
+
 ```
  {
   "error": false,
@@ -162,34 +183,37 @@ _Los tests se realizan con supertest y should._
 _Los test verifican las siguientes cosas:_
 
 ### PHOTOS
-* _Test sin token en la petición._
-* _Test con token en la petición por default (offset y limit)._
-* _Test con offset como parámetro y limit por default._
-* _Test con limit como parámetro y offset por default._
-* _Test con limit y offset como parámetro._
+
+- _Test sin token en la petición._
+- _Test con token en la petición por default (limit = 10 y offset = 0)._
+- _Test con offset como parámetro y limit por default._
+- _Test con limit como parámetro y offset por default._
+- _Test con limit y offset como parámetro._
 
 ### POSTS
-* _Test sin token en la petición._
-* _Test con token en la petición por default (offset y limit)._
-* _Test con offset como parámetro y limit por default._
-* _Test con limit como parámetro y offset por default._
-* _Test con limit y offset como parámetro._
+
+- _Test sin token en la petición._
+- _Test con token en la petición por default (limit = 20 y offset = 0)._
+- _Test con offset como parámetro y limit por default._
+- _Test con limit como parámetro y offset por default._
+- _Test con limit y offset como parámetro._
 
 ### USER
-* _Test sin datos en agregar nuevo usuario._
-* _Test sin email en agregar nuevo usuario._
-* _Test sin password en agregar nuevo usuario._
-* _Formato de email inválido en agregar nuevo usuario._
-* _Registrar el email._
-* _Email ya registrado._
-* _Test sin datos de login._
-* _Test sin email en el login._
-* _Test sin password en el login._
-* _Formato de email inválido en el login._
-* _No está registrado el email._
-* _Login correcto._
-* _Login con password incorrecta._
-* _No existe el endpoint._
+
+- _Test sin datos en agregar nuevo usuario._
+- _Test sin email en agregar nuevo usuario._
+- _Test sin password en agregar nuevo usuario._
+- _Formato de email inválido en agregar nuevo usuario._
+- _Registrar el email._
+- _Email ya registrado._
+- _Test sin datos de login._
+- _Test sin email en el login._
+- _Test sin password en el login._
+- _Formato de email inválido en el login._
+- _No está registrado el email._
+- _Login correcto._
+- _Login con password incorrecta._
+- _No existe el endpoint._
 
 _Además realiza la verificación de la sintaxis del código con "grunt-contrib-jshint", con versión 8 /* jshint esversion: 8 */_
 
@@ -199,9 +223,9 @@ _Para ejecutar los test se realiza con el comando: npm run test_
 
 _Las herramientas que se utilizó para crear este proyecto_
 
-* [NodeJs](https://nodejs.org/en/) - Node. js es un entorno JavaScript que nos permite ejecutar en el servidor, de manera asíncrona, con una arquitectura orientada a eventos y basado en el motor V8 de Google.
-* [MongoDB](https://www.mongodb.com/) - es un sistema de base de datos NoSQL orientado a documentos de código abierto, en lugar de guardar los datos en tablas lo hace en estructuras de datos BSON (similar a JSON) con un esquema dinámico. 
-* [Grunt] (https://gruntjs.com/) - Grunt es un ejecutador de tareas, se utiliza para la automatización de tests. 
+- [NodeJs](https://nodejs.org/en/) - Node. js es un entorno JavaScript que nos permite ejecutar en el servidor, de manera asíncrona, con una arquitectura orientada a eventos y basado en el motor V8 de Google.
+- [MongoDB](https://www.mongodb.com/) - es un sistema de base de datos NoSQL orientado a documentos de código abierto, en lugar de guardar los datos en tablas lo hace en estructuras de datos BSON (similar a JSON) con un esquema dinámico.
+- [Grunt] (https://gruntjs.com/) - Grunt es un ejecutador de tareas, se utiliza para la automatización de tests.
 
 ### Consideraciones 📄
 
@@ -210,7 +234,7 @@ _La arquitectura utilizada es basada en componentes. Ésta arquitectura permite 
 _Para poder correr se necesita tener instalado mongoDB y tener un archivo de configuracion .env,con las siguientes variables de entorno:_
 
 ```
-URLDB = Url de la base de mongo 
+URLDB = Url de la base de mongo
 PORT_API = Puerto donde corre la app de node
 TOKEN_SECRET = Token para codificar y decodificar el jwt.
 ```
