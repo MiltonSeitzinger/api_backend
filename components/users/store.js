@@ -24,7 +24,7 @@ async function addUser(user) {
 }
 
 async function getUsers(){
-  let users = await User.find();
+  let users = await User.find().select('email -_id');
   return users;
 }
 
