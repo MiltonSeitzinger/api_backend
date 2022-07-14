@@ -92,7 +92,7 @@ _Formato de respuesta:_
 #### Obtener los posts de la API.
 
 ```
-GET -> https://www.apibackend.website/api/posts/
+POST -> https://www.apibackend.website/api/posts/
 ```
 
 _Te lista los posts de acuerdo a los parámetros que se pasan, para realizar la petición se necesita token._
@@ -132,7 +132,7 @@ _El formato de respuesta es la siguiente:_
 #### Obtener las photos de la API.
 
 ```
-GET -> https://www.apibackend.website/api/photos/
+POST -> https://www.apibackend.website/api/photos/
 ```
 
 _Te lista las photos de acuerdo a los parámetros que se pasan, para realizar la petición se necesita token._
