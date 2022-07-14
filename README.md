@@ -247,4 +247,4 @@ _Se utiliza bcrypt para poder hashear las contraseñas y no guardarlas como text
 
 _El proyecto se encuentra alojado en AWS con una máquina con sistema operativo linux._
 
-_El dominio es https://apibackend.website, el cual se obtuvo el certificado ssl con certbot._
+_Se obtuvo el certificado ssl con certbot._
