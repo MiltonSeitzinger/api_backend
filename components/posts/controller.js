@@ -1,17 +1,17 @@
 /* jshint esversion: 8 */
-const store = require('./store');
+const store = require("./store");
 
 async function getPosts(limit = 20, offset = 0) {
   return new Promise(async (resolve, reject) => {
     try {
       let postAll = await store.getPosts();
-      if(!postAll.error){
-        let posts = postAll.posts.data.slice(offset, limit+offset);
+      if (!postAll.error) {
+        let posts = postAll.posts.data.slice(offset, limit + offset);
         resolve(posts);
         return;
       } else {
         reject(postAll.message);
-        return;  
+        return;
       }
     } catch (error) {
       reject(error);
@@ -21,5 +21,5 @@ async function getPosts(limit = 20, offset = 0) {
 }
 
 module.exports = {
-  getPosts
+  getPosts,
 };

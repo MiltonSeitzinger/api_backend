@@ -1,37 +1,37 @@
 /* jshint esversion: 8 */
-const store = require('./store');
-const auth = require('../../services/auth');
+const store = require("./store");
+const auth = require("../../services/auth");
 
-function formatEmailValid(email){
+function formatEmailValid(email) {
   let regex_email = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-  if(regex_email.test(email)){
+  if (regex_email.test(email)) {
     return true;
   } else {
     return false;
   }
 }
 
-async function addUser(user){
+async function addUser(user) {
   return new Promise(async (resolve, reject) => {
-    if(!user || !user.email || !user.password){
-      resolve('Falta email o password');
+    if (!user || !user.email || !user.password) {
+      resolve("Falta email o password");
       return;
     }
     try {
       const { email } = user;
       let isEmailValid = formatEmailValid(email);
-      if(!isEmailValid){
-        resolve('Formato de email inválido');
+      if (!isEmailValid) {
+        resolve("Formato de email inválido");
         return;
       }
 
       let exists = await store.getUserByEmail(email);
-      if(exists){
-        resolve('El email ya se encuentra registrado');
+      if (exists) {
+        resolve("El email ya se encuentra registrado");
         return;
       }
       let newUser = await store.addUser(user);
-      if(newUser.add){
+      if (newUser.add) {
         let token = auth.generateToken(email);
         if (!token.error) {
           resolve(token);
@@ -41,7 +41,7 @@ async function addUser(user){
         return;
       } else {
         console.log(newUser);
-        reject('Hubo problemas para guardar el nuevo usuario');
+        reject("Hubo problemas para guardar el nuevo usuario");
         return;
       }
     } catch (error) {
@@ -51,7 +51,7 @@ async function addUser(user){
   });
 }
 
-async function getUsers(){
+async function getUsers() {
   return new Promise(async (resolve, reject) => {
     try {
       let users = await store.getUsers();
@@ -64,29 +64,28 @@ async function getUsers(){
   });
 }
 
-
 async function loginUser(user) {
   return new Promise(async (resolve, reject) => {
-    if(!user || !user.email || !user.password){
-      resolve('Falta email o password');
+    if (!user || !user.email || !user.password) {
+      resolve("Falta email o password");
       return;
     }
     try {
       const { email, password } = user;
       let isEmailValid = formatEmailValid(email);
-      if(!isEmailValid){
-        resolve('Formato de email inválido');
+      if (!isEmailValid) {
+        resolve("Formato de email inválido");
         return;
       }
 
       let userByEmail = await store.getUserByEmail(email);
-      if(userByEmail){
+      if (userByEmail) {
         userByEmail.comparePassword(password, (err, isMatch) => {
-          if(err){
+          if (err) {
             reject(err);
             return;
           } else {
-            if(isMatch){
+            if (isMatch) {
               let token = auth.generateToken(email);
               if (!token.error) {
                 resolve(token);
@@ -95,13 +94,13 @@ async function loginUser(user) {
               }
               return;
             } else {
-              resolve('Contraseña incorrecta');
+              resolve("Contraseña incorrecta");
               return;
             }
           }
         });
-      } else{
-        resolve('No existe el email');
+      } else {
+        resolve("No existe el email");
         return;
       }
     } catch (error) {
@@ -113,6 +112,6 @@ async function loginUser(user) {
 
 module.exports = {
   addUser,
-  getUsers, 
-  login: loginUser
+  getUsers,
+  login: loginUser,
 };

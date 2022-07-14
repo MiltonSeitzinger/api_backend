@@ -1,8 +1,8 @@
 /* jshint esversion: 8 */
-const axios = require('axios');
-let urlPosts = 'https://jsonplaceholder.typicode.com/posts';
+const axios = require("axios");
+let urlPosts = "https://jsonplaceholder.typicode.com/posts";
 
-async function getPosts(){
+async function getPosts() {
   try {
     let posts = await axios.get(urlPosts);
     return { posts, error: false };
@@ -12,5 +12,5 @@ async function getPosts(){
 }
 
 module.exports = {
-  getPosts
+  getPosts,
 };
