@@ -217,10 +217,10 @@ TOKEN_SECRET = Token para codificar y decodificar el jwt.
 
 _Se utilizó Gruntfile para poder automatizar los diferentes test unitarios, y validación de sintaxis del código._
 
-_La mayoría de los métodos estan escritos en inglés, pero las respuestas de la api están en español._
-
 _Se utiliza axios para poder realizar las peticiones a las api de post y photos._
 
 _Se utiliza bcrypt para poder hashear las contraseñas y no guardarlas como texto plano._
 
-_El proyecto se encuentra alojado en AWS con una máquina con sistema operativo linux_
+_El proyecto se encuentra alojado en AWS con una máquina con sistema operativo linux._
+
+_El dominio es https://apibackend.website, el cual se obtuvo el certificado ssl con certbot._
