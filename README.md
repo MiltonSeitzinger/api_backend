@@ -248,3 +248,5 @@ _Se utiliza bcrypt para poder hashear las contraseñas y no guardarlas como text
 _El proyecto se encuentra alojado en AWS con una máquina con sistema operativo linux._
 
 _Se obtuvo el certificado ssl con certbot._
+
+_Para resolver problemas de compatibilidad en ejecutar la api en diferentes equipos, se tendría que utilizar docker_
