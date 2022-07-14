@@ -3,7 +3,7 @@ const User = require('./model');
 
 async function getUserByEmail(email){
   try {
-    let user = await User.findOne({email});
+    let user = await User.findOne({ email });
     return user;
   } catch (error) {
     console.log('error', error);
@@ -12,12 +12,13 @@ async function getUserByEmail(email){
 
 async function addUser(user) {
     const newUser = new User(user);
+    
     let new_user = await newUser.save()
     .then((user) => {
-      return {add: true, user };
+      return { add: true, user };
     })
     .catch((err) => {
-      return {add: false, err };
+      return { add: false, err };
     });
     return new_user;
 }

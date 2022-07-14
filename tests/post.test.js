@@ -8,12 +8,12 @@ let numbers = "0123456789";
 let caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let password = '';
 
-for (let i=0; i<10; i++) {
+for (let i = 0; i < 10; i++) {
   password +=caracteres.charAt(Math.floor(Math.random()*caracteres.length)); 
 } 
 
 let mergeNumber='';
-for (let i=0; i<3; i++) {
+for (let i = 0; i < 3; i++) {
   mergeNumber +=numbers.charAt(Math.floor(Math.random()*numbers.length)); 
 } 
 
@@ -23,9 +23,12 @@ let user = {
   email: email, 
   password: password
 };
-let token =''  ;
+
+let token ='';
+
 /* Generar un registro de email para obtener el token */
 describe('POST /api/users/add_user', () => {
+
   it('Registrar el email', done => {
 		request(app)
 			.post('/api/users/add_user')
@@ -39,9 +42,11 @@ describe('POST /api/users/add_user', () => {
 				done();
 		});
 	});
+
 });
 
 describe('POST /api/posts/', () => {
+
   it('Test sin token en la peticion', done => {
 		request(app)
 			.post('/api/posts/')
@@ -55,7 +60,8 @@ describe('POST /api/posts/', () => {
 				done();
 		});
 	});
-	it('Test con token en la peticion por default(offset y limit)', done => {
+
+	it('Test con token en la peticion por default (offset y limit)', done => {
 		request(app)
 			.post('/api/posts/')
 			.set('Accept', 'application/json')
@@ -69,6 +75,7 @@ describe('POST /api/posts/', () => {
 				done();
 		});
 	});
+
 	it('Test con offset como parametro y limit por default', done => {
 		let offset = 15;
 		let primer_elemento = 0;
@@ -76,7 +83,7 @@ describe('POST /api/posts/', () => {
 			.post('/api/posts/')
 			.set('Accept', 'application/json')
 			.set('Authorization', `Bearer ${token}`)
-			.send({offset})
+			.send({ offset })
 			.expect(200)
 			.end((err, res) => {
 				if(err) return done(err);
@@ -87,13 +94,14 @@ describe('POST /api/posts/', () => {
 				done();
 		});
 	});
+
 	it('Test con limit como parametro y offset por default', done => {
 		let limit = 15;
 		request(app)
 			.post('/api/posts/')
 			.set('Accept', 'application/json')
 			.set('Authorization', `Bearer ${token}`)
-			.send({limit})
+			.send({ limit })
 			.expect(200)
 			.end((err, res) => {
 				if(err) return done(err);
@@ -103,6 +111,7 @@ describe('POST /api/posts/', () => {
 				done();
 		});
 	});
+
 	it('Test con limit y offset como parametro', done => {
 		let limit = 15;
 		let offset = 4;
@@ -122,4 +131,5 @@ describe('POST /api/posts/', () => {
 				done();
 		});
 	});
+
 });

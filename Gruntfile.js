@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
 			/* Configure  jshint para comprobar la sintaxis de los archivos */
 			jshint: {
-				files: ['network/*.js','components/users/*.js','components/photos/*.js', 'services/*.js', 'tests/*.js', 'db.js', 'server.js'],
+				files: ['network/*.js', 'components/users/*.js',' components/photos/*.js', 'services/*.js', 'tests/*.js', 'db.js', 'server.js'],
 				options: {
 					globals: {
 						jQuery: true
@@ -17,12 +17,11 @@ module.exports = function(grunt) {
             timeout : 5000,
             quiet : false 
           },
-          src : ["tests/user.test.js","tests/post.test.js","tests/photos.test.js"]
+          src : ["tests/user.test.js", "tests/post.test.js", "tests/photos.test.js"]
         }
       }
     });
 		grunt.loadNpmTasks('grunt-contrib-jshint')
 		grunt.loadNpmTasks('grunt-mocha-test')
     grunt.registerTask('automatic', ['mochaTest', 'jshint']);
-    //grunt.registerTask('automatic', ['jshint']);
 };

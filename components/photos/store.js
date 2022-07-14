@@ -7,7 +7,7 @@ async function getPhotos(){
     let photos = await axios.get(urlPhotos);
     return { photos, error: false };
   } catch (error) {
-    return { error: true, message:error };
+    return { error: true, message: error };
   }
 }
 

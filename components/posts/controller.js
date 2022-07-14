@@ -6,7 +6,7 @@ async function getPosts(limit = 20, offset = 0) {
     try {
       let postAll = await store.getPosts();
       if(!postAll.error){
-        let posts = postAll.posts.data.slice(offset,limit+offset);
+        let posts = postAll.posts.data.slice(offset, limit+offset);
         resolve(posts);
         return;
       } else {

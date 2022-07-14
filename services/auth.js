@@ -7,7 +7,7 @@ function generateToken(email){
   try {
     return jwt.sign({ email }, process.env.TOKEN_SECRET, { expiresIn:"2 days" });
   } catch (error) {
-    console.log("file: auth.js ~ line 8 ~ generateToken ~ error", error);
+    console.log("generateToken ~ error", error);
     return res.status(500).send('Internal Server Error');
   }
 }

@@ -6,14 +6,14 @@ const controller = require('./controller');
 const auth = require('../../services/auth');
 
 /* AGREGAR NUEVO USUARIO */
-router.post('/add_user',(req,res) => {
+router.post('/add_user',(req, res) => {
   controller.addUser(req.body.user)
   .then((new_user) => {
-    response.success(res,new_user,200);
+    response.success(res, new_user, 200);
   })
   .catch((err) => {
-    console.log("file: network.js ~ line 13 ~ router.post ~ err", err);
-    response.error(res, 'Internal Server Error',500);
+    console.log("err", err);
+    response.error(res, 'Internal Server Error', 500);
   });
 });
 
@@ -21,11 +21,11 @@ router.post('/add_user',(req,res) => {
 router.post('/login', (req, res) => {
   controller.login(req.body.user)
   .then((user) => {
-    response.success(res,user,200);
+    response.success(res, user, 200);
   })
   .catch((err) => {
-    console.log("file: network.js ~ line 25 ~ router.post ~ err", err);
-    response.error(res,'Internal Server Error', 500);
+    console.log("err", err);
+    response.error(res, 'Internal Server Error', 500);
   });
 });
 
@@ -35,6 +35,7 @@ router.get('/', auth.verifyToken,(req, res) => {
     response.success(res, users, 200);
   })
   .catch((err) => {
+    console.log("err", err);
     response.error(res, 'Internal Server Error', 500);
   });
 });

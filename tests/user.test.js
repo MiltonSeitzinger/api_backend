@@ -8,25 +8,27 @@ let caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let password = '';
 let password2 = '';
 
-for (let i=0; i<10; i++) {
+for (let i = 0; i < 10; i++) {
   password +=caracteres.charAt(Math.floor(Math.random()*caracteres.length)); 
   password2 +=caracteres.charAt(Math.floor(Math.random()*caracteres.length)); 
 } 
 
 let mergeNumber='';
-for (let i=0; i<3; i++) {
+for (let i = 0; i < 3; i++) {
   mergeNumber +=numbers.charAt(Math.floor(Math.random()*numbers.length)); 
 } 
 
 let email = `email${mergeNumber}@email.com`;
 let email2 = `email${mergeNumber}bis@email.com`;
 let emailInvalido = `email${mergeNumber}email.com`;
+
 let user = {
   email: email, 
   password: password
 };
 
 describe('POST /api/users/add_user', () => {
+
   it('Probando sin datos en agregar nuevo usuario', done => {
 		request(app)
 			.post('/api/users/add_user')
@@ -41,6 +43,7 @@ describe('POST /api/users/add_user', () => {
 				done();
 		});
 	});
+
   it('Probando sin email en agregar nuevo usuario', done => {
     let user = {
       password
@@ -59,6 +62,7 @@ describe('POST /api/users/add_user', () => {
 				done();
 		});
 	});
+
   it('Probando sin password en agregar nuevo usuario', done => {
     let user = {
       email
@@ -77,6 +81,7 @@ describe('POST /api/users/add_user', () => {
 				done();
 		});
 	});
+
   it('Formato de email inválido en agregar nuevo usuario', done => {
     let user = {
       email: emailInvalido, 
@@ -96,6 +101,7 @@ describe('POST /api/users/add_user', () => {
 				done();
 		});
 	});
+
   it('Registrar el email', done => {
 		request(app)
 			.post('/api/users/add_user')
@@ -111,6 +117,7 @@ describe('POST /api/users/add_user', () => {
 				done();
 		});
 	});
+
   it('Email ya registrado', done => {
 		request(app)
 			.post('/api/users/add_user')
@@ -132,6 +139,7 @@ describe('POST /api/users/add_user', () => {
 
 /* LOGIN USER */
 describe('POST /api/users/login', () => {
+
   it('Probando sin datos de login', done => {
 		request(app)
 			.post('/api/users/login')
@@ -146,6 +154,7 @@ describe('POST /api/users/login', () => {
 				done();
 		});
 	});
+
   it('Probando sin email en el login', done => {
     let user = {
       password
@@ -164,6 +173,7 @@ describe('POST /api/users/login', () => {
 				done();
 		});
 	});
+
   it('Probando sin password en el login', done => {
     let user = {
       email
@@ -182,6 +192,7 @@ describe('POST /api/users/login', () => {
 				done();
 		});
 	});
+
   it('Formato de email inválido en el login', done => {
     let user = {
       email: emailInvalido, 
@@ -201,6 +212,7 @@ describe('POST /api/users/login', () => {
 				done();
 		});
 	});
+
   it('No está registrado el email', done => {
     let user = {
       email: email2,
@@ -208,7 +220,7 @@ describe('POST /api/users/login', () => {
     };
 		request(app)
 			.post('/api/users/login')
-			.send({user})
+			.send({ user })
 			.set('Accept', 'application/json')
 			.expect('Content-Type', /json/)
 			.expect(200)
@@ -220,6 +232,7 @@ describe('POST /api/users/login', () => {
 				done();
 		});
 	});
+
   it('Login correcto', done => {
 		request(app)
 			.post('/api/users/login')
@@ -235,6 +248,7 @@ describe('POST /api/users/login', () => {
 				done();
 		});
 	});
+
   it('Login con password incorrecta', done => {
     user.password = password2;
 		request(app)
@@ -251,10 +265,12 @@ describe('POST /api/users/login', () => {
 				done();
 		});
 	});
+
 });
 
 
-describe('Endpoint no existente', () => { 
+describe('Endpoint no existente', () => {
+
 	it('No existe el endpoint', done => {
 		let path = '/enpoint/notfound/';
 		request(app)
@@ -262,9 +278,10 @@ describe('Endpoint no existente', () => {
 		.set('Accept', 'application/json')
 		.expect(404)
 		.end((err, res) => {
-			if(err) {return done(err);} else {
-			done();
+			if(err) { return done(err); } else {
+				done();
       }
 		});
 	});
+	
 });

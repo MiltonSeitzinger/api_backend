@@ -12,12 +12,12 @@ dotenv.config();
 db(process.env.URLDB);
 
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 router(app);
 
-app.listen(process.env.PORT_CONEXA);
+app.listen(process.env.PORT_API);
 
-console.log(`Corriendo en el puerto ${(process.env.PORT_CONEXA)}`);
+console.log(`Corriendo en el puerto ${(process.env.PORT_API)}`);
 
 module.exports = app;
