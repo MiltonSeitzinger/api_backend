@@ -32,7 +32,7 @@ async function verifyToken(req, res, next) {
 
       let userDB = await store.getUserByEmail(user.email);
       
-      if(userDB.email == user.email){
+      if(userDB && userDB.email == user.email){
         req.user = user;
         next();
       } else {

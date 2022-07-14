@@ -3,14 +3,13 @@
 
 ## Como ejecutar 🚀
 
-_Para poder probar se puede acceder a la siguiente url:_
-
-Los endpoint de pruebas son:
+_Para poder probar se debe realizar peticiones a través de postoman o insomnia a las siguiente url:_
 
 ### USERS
 
+#### Obtener los usuarios registrados.
 ```
-GET -> /api/users/
+GET -> https://www.apibackend.website/api/users/
 ```
 _Lista todos los email de los usuarios registrados, para realizar la petición se necesita token._
 ```
@@ -33,8 +32,9 @@ _Lista todos los email de los usuarios registrados, para realizar la petición s
   }
 ```
 
+#### Agregar un nuevo usuarios.
 ```
-POST -> /api/users/add_user
+POST -> https://www.apibackend.website/api/users/add_user
 ```
 _Se utiliza para poder registrar un nuevo usuario en el sistema, el formato del json a enviar es el siguiente:_
 ```
@@ -53,8 +53,9 @@ _El formato de respuesta es la siguiente:_
   }
 ```
 
+#### Login de un usuarios.
 ```
-POST -> /api/users/login
+POST -> https://www.apibackend.website/api/users/login
 ```
 _Se utiliza para el login de un usuario, comprobando email y contraseña, el formato del json a enviar es el siguiente:_
 ```
@@ -77,8 +78,9 @@ _Formato de respuesta:_
 
 ### POSTS
 
+#### Obtener los posts de la API.
 ```
-GET -> /api/posts/
+GET -> https://www.apibackend.website/api/posts/
 ```
 _Te lista los posts de  acuerdo a los parámetros que se pasan, para realizar la petición se necesita token._
 
@@ -111,8 +113,9 @@ _El formato de respuesta es la siguiente:_
 
 ### PHOTOS
 
+#### Obtener las photos de la API.
 ```
-GET -> /api/photos/
+GET -> https://www.apibackend.website/api/photos/
 ```
 _Te lista las photos de  acuerdo a los parámetros que se pasan, para realizar la petición se necesita token._
 
@@ -219,3 +222,5 @@ _La mayoría de los métodos estan escritos en inglés, pero las respuestas de l
 _Se utiliza axios para poder realizar las peticiones a las api de post y photos._
 
 _Se utiliza bcrypt para poder hashear las contraseñas y no guardarlas como texto plano._
+
+_El proyecto se encuentra alojado en AWS con una máquina con sistema operativo linux_
