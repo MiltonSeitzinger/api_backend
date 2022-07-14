@@ -33,7 +33,11 @@ async function addUser(user){
       let newUser = await store.addUser(user);
       if(newUser.add){
         let token = auth.generateToken(email);
-        resolve(token); 
+        if (!token.error) {
+          resolve(token);
+        } else {
+          reject(token.error);
+        }
         return;
       } else {
         console.log(newUser);
@@ -84,7 +88,11 @@ async function loginUser(user) {
           } else {
             if(isMatch){
               let token = auth.generateToken(email);
-              resolve(token);
+              if (!token.error) {
+                resolve(token);
+              } else {
+                reject(token.error);
+              }
               return;
             } else {
               resolve('Contraseña incorrecta');
