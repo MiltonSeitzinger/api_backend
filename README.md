@@ -12,7 +12,7 @@ Los endpoint de pruebas son:
 ```
 GET -> /api/users/
 ```
-_Te lista todos los email de los usuarios registrados, para realizar la petición se necesita token._
+_Lista todos los email de los usuarios registrados, para realizar la petición se necesita token._
 ```
   {
     "error": false,
@@ -61,7 +61,7 @@ _Se utiliza para el login de un usuario, comprobando email y contraseña, el for
   {
     "user": {
       "email": "email7@gmail.com",
-      "password": "pepito123"
+      "password": "pass123"
     }
   }
 ```
